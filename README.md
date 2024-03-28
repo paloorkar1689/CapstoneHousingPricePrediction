@@ -12,7 +12,9 @@ With the given dataset, build an accurate prediction model for housing prices in
     ├── images
     |    ├── PaintedLadies.png 
     |    ├── ResultDF.png
-    ├── HousingPricePrediction.ipynb [Link to notebook](https://github.com/paloorkar1689/CapstoneHousingPricePrediction/blob/main/HousingPricePrediction.ipynb) 
+    ├── HousingPricePrediction.ipynb 
+
+[Link to notebook](https://github.com/paloorkar1689/CapstoneHousingPricePrediction/blob/main/HousingPricePrediction.ipynb) 
 
 ### 1 - Business Understanding
     1.1 Business problem definition
@@ -30,7 +32,7 @@ With the given dataset, build an accurate prediction model for housing prices in
 
 ### 2 - Data Understanding
     2.1 Data Sources and Collection
-        -   Redfin API and CSV consolidation were used to accumulate sold houses in last year in the Bay Area.
+        -   Redfin API and CSV consolidation were used to accumulate sold houses last year in the Bay Area.
         -   FinalRedfin.csv dataset is present in the data folder.
         -   Data will be loaded with pd.read_csv() method of Pandas
 
@@ -69,7 +71,7 @@ With the given dataset, build an accurate prediction model for housing prices in
 ### 3 - Data Preparation
     3.1 Data Cleaning
         -   Drop Columns that would not provide any information or have a high correlation with other fields.
-            -   address, propertyType, Unnamed: 0 has no usefulness hence dropping
+            -   address, property type, Unnamed: 0 has no usefulness hence dropping
             -   City, location, zip code, longitude and latitude have high correlation, dropping city, latitude and longitude. 
             -   Model and Manufacturer are highly correlated, dropping Model
             -   Drop VIN and ID as they do not provide any meaningful information
@@ -159,8 +161,8 @@ With the given dataset, build an accurate prediction model for housing prices in
     
     5.2 Iterative Improvement
         -   Based on the re-runs of the above changes need to be made
-            -   Tune hyper parameters for better performance
-            -   Observed over fitting, Need to identify highly co-related features and omit them 
+            -   Tune hyperparameters for better performance
+            -   Observed overfitting, Need to identify highly co-related features and omit them 
                 or perform feature engineering to better the prediction. 
             -   Get diverse samples and more relevant features such as crime rate, remodel done to the house, tax info etc.
 
@@ -171,12 +173,13 @@ With the given dataset, build an accurate prediction model for housing prices in
 </p>
 
         -   Top 5 important features of Gradient Boosting Regressor and Random Forest Regressor
-            -   rental value, elementary, lot-size, squareFeet, age
+            -   rental value, elementary, lot size, squareFeet, age
 
 ### 6 - Deployment
     6.1 Strategy
         -  We could Deploy this model as a web application or API to provide users with a user-friendly interface for predicting housing prices in the Bay Area.
-        -  The user can provide inputs such as zip code, bath, and beds or he can provide an address of the property. We can use the deployed model to accurately predict
+        -  The user can provide inputs such as zip code, bath, and beds or he can provide an address of the property. 
+		We can use the deployed model to accurately predict
         sale price. 
 
     6.2 Improvement for Future Predictions
