@@ -166,9 +166,9 @@ With the given dataset, build an accurate prediction model for housing prices in
 
     5.3 Results
         -   Model Performance
-            <p align="center">
-            <img src="images/ResultDF.png">
-            </p>
+<p align="center">
+<img src="images/ResultDF.png">
+</p>
 
         -   Top 5 important features of Gradient Boosting Regressor and Random Forest Regressor
             -   rental value, elementary, lot-size, squareFeet, age
