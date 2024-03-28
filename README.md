@@ -2,6 +2,9 @@
 
 ## Overview
 With the given dataset, build an accurate prediction model for housing prices in the Bay Area.
+        <p align="center">
+        <img src=“images/“PaintedLadies.png>
+        </p>
 
 ### 1 - Business Understanding
     1.1 - Business problem definition
