@@ -167,15 +167,16 @@ With the given dataset, build an accurate prediction model for housing prices in
 
     5.3 Results
         -   Model Performance
+        -   Top 5 important features of Gradient Boosting Regressor and Random Forest Regressor
+            -   rental value, elementary, lot size, squareFeet, age
+        -   Validation Dataset Evaluation metrics
+            Validation MAE: 5.452511505858551
+            Validation MSE: 41.90547678814682
+            Validation R2-score: 0.9999999997669066
+	    
 <p align="center">
 <img src="images/ResultDF.png">
 </p>
-        -   Top 5 important features of Gradient Boosting Regressor and Random Forest Regressor
-            -   rentalValue, elementry, lotSize, squareFeet, age
-        -   Validation Dataset Evaluation metrics
-            Validation MAE : 5.452511505858551
-            Validation MSE : 41.90547678814682
-            Validation R2-score : 0.9999999997669066
 
 ### 6 - Deployment
     6.1 Strategy
