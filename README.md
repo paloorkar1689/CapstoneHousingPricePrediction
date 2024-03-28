@@ -12,9 +12,7 @@ With the given dataset, build an accurate prediction model for housing prices in
     ├── images
     |    ├── PaintedLadies.png 
     |    ├── ResultDF.png
-    ├── HousingPricePrediction.ipynb 
-
-[Link to notebook](https://github.com/paloorkar1689/CapstoneHousingPricePrediction/blob/main/HousingPricePrediction.ipynb) 
+    ├── HousingPricePrediction.ipynb [Link to notebook](https://github.com/paloorkar1689/CapstoneHousingPricePrediction/blob/main/HousingPricePrediction.ipynb) 
 
 ### 1 - Business Understanding
     1.1 Business problem definition
@@ -22,17 +20,17 @@ With the given dataset, build an accurate prediction model for housing prices in
             houses often selling for prices significantly above their asking prices. 
             This trend is driven by high demand, limited inventory, and competitive bidding among buyers. 
             To build an accurate prediction model with the highest accuracy, it is crucial to consider a range of factors that can influence house prices.
-            Factors such as location, square feet, schools, ease of transit, and crime rates can significantly impact the sale price. 
-            The goal is to carefully analyse these factors and understand their relative importance, then develop an accurate prediction model.
-            This will boost the confidence of buyers to make the right offer and give better insights to real estate investors, sellers as well as agents.
+            Factors such as location, square feet, schools, ease of transit, crime rates can significantly impact the sale price. 
+            The goal is to carefully analyzing these factors and understand their relative importance, then develop an accurate prediction model.
+            This will boost the confidence of buyers to make the right offer and give better insights to real estate investors, sellers as well as the agents.
 
     1.2 Data problem definition
-            The data objective is to develop a model that accurately predicts the Sale price for a given house
+            The data objective is to develop a model that accurately predicts the Sale price for given house
             This model should also help identify key characteristics that influence success.
 
 ### 2 - Data Understanding
     2.1 Data Sources and Collection
-        -   Redfin API and CSV consolidation were used to accumulate sold houses last year in the Bay Area.
+        -   Redfin API and CSV consolidation were used to accumulate sold houses in last year in the Bay Area.
         -   FinalRedfin.csv dataset is present in the data folder.
         -   Data will be loaded with pd.read_csv() method of Pandas
 
@@ -55,13 +53,13 @@ With the given dataset, build an accurate prediction model for housing prices in
     2.4 Data Visualization
         -   Heatmap of co-relations of numeric features.
                 rentalValue has the highest positive co-relation
-                age and transit-score have a negative co-relation
-        -   Bar plot of the number of Sales per month.
+                age and transit-score has negative co-relation
+        -   Bar plot of number of Sales per month.
                 February has the highest number of sales followed by October
         -   Bar plot of Average house prices based on location
                 Cupertino and Saratoga are the leading candidate followed by Campbell
         -   Bar plot of Average price by Age range
-                Housed built-in 1060s and 1970s have the highest demand
+                Housed built in 1060s and 1970s have the highest demand
         -   Bar plot Prices vs Zipcode.
                 95014 and 95129 have the highest house price
         -   Histograms of all numeric features
@@ -71,7 +69,7 @@ With the given dataset, build an accurate prediction model for housing prices in
 ### 3 - Data Preparation
     3.1 Data Cleaning
         -   Drop Columns that would not provide any information or have a high correlation with other fields.
-            -   address, property type, Unnamed: 0 has no usefulness hence dropping
+            -   address, propertyType, Unnamed: 0 has no usefulness hence dropping
             -   City, location, zip code, longitude and latitude have high correlation, dropping city, latitude and longitude. 
             -   Model and Manufacturer are highly correlated, dropping Model
             -   Drop VIN and ID as they do not provide any meaningful information
@@ -92,7 +90,7 @@ With the given dataset, build an accurate prediction model for housing prices in
         -   Ran PCA for idea feature selection with 0.99 as a threshold
         -   Plotted the Explained variance vs the Number of Principal components
         -   Number of components to keep: 13 out of 17
-        -   Dropped 'ppsf', 'yearBuilt', 'location', 'listPrice', 'walkScore', 'bikeScore'
+        -   Dropped 'ppsf', 'yearBuilt','location', 'listPrice', 'walkScore', 'bikeScore'
 
     3.5 Final Features
         -   zipOrPostalCode, beds, baths, squareFeet, lotSize, transitScore, rentalValue, elementry,
@@ -100,10 +98,11 @@ With the given dataset, build an accurate prediction model for housing prices in
 
 ### 4 - Modeling
     4.1 Data split
-        -   train(70%) and test(30) with train_test_split with random_state=42
+        -   train(70%) and test(30%) with train_test_split with random_state=42
+        -   test(90%) and validation(10%) with train_test_split with random_state=42
         -   Created list for categorical data vs numeric data
     
-    4.2 Preprocessors
+    4.2 Pre-processors
         -   Created a numeric pipeline with StandardScaler
         -   Created a categorical pipeline with OneHotEncoder
         -   Combined both in preprocessor with ColumnTransformer
@@ -121,7 +120,7 @@ With the given dataset, build an accurate prediction model for housing prices in
         -   Create a pipeline with a preprocessor and SVC
         -   Define a params_grid
                 'regressor__kernel': ['linear', 'rbf', 'poly'],
-                'regressor__C': [0.1, 1, 10],
+                'regressor__C': [0.1, 1, 10, 100],
                 'regressor__epsilon': [0.01, 0.1, 1]
         -   Run GridSearchCv with the pipeline and params_grid with scoring as neg_mean_squared_error
         -   Fit the model on the training dataset
@@ -131,9 +130,9 @@ With the given dataset, build an accurate prediction model for housing prices in
     4.5 Gradient Boosting Regressor 
         -   Create a pipeline with a preprocessor and Gradient Boosting Regressor
         -   Define a params_grid with    
-                'regressor__n_estimators': [50, 100, 200],
-                'regressor__learning_rate': [0.05, 0.1, 0.2],
-                'regressor__max_depth': [3, 5, 7]
+                'regressor__n_estimators': [50, 100, 200, 300],
+                'regressor__learning_rate': [0.01, 0.05, 0.1, 0.2],
+                'regressor__max_depth': [3, 5, 7, 9]
         -   Run GridSearchCv with the pipeline and params_grid with scoring as neg_mean_squared_error
         -   Fit the model on the training dataset
         -   Extract and plot the feature importance data 
@@ -142,7 +141,7 @@ With the given dataset, build an accurate prediction model for housing prices in
     4.6 Random Forest Regressor
         -   Create a pipeline with a preprocessor and Random Forest Regressor
         -   Define a params_grid 
-                'regressor__n_estimators': [100, 200, 300],
+                'regressor__n_estimators': [50, 100, 200, 300],
                 'regressor__max_depth': [10, 20, 30],
         -   Run GridSearchCv with the pipeline and params_grid with scoring as neg_mean_squared_error
         -   Fit the model on the training dataset
@@ -157,12 +156,12 @@ With the given dataset, build an accurate prediction model for housing prices in
 
 ### 5 - Evaluation
     5.1 Overall performance
-        -  Gradient Boosting Regressor performed the best with 1396 as Test MAE and 0.99 as R2-score
+        -  Gradient Boosting Regressor performed the best with 52.93 as Test MAE and 1 as R2-score
     
     5.2 Iterative Improvement
         -   Based on the re-runs of the above changes need to be made
-            -   Tune hyperparameters for better performance
-            -   Observed overfitting, Need to identify highly co-related features and omit them 
+            -   Tune hyper parameters for better performance
+            -   Observed over fitting, Need to identify highly co-related features and omit them 
                 or perform feature engineering to better the prediction. 
             -   Get diverse samples and more relevant features such as crime rate, remodel done to the house, tax info etc.
 
@@ -171,26 +170,31 @@ With the given dataset, build an accurate prediction model for housing prices in
 <p align="center">
 <img src="images/ResultDF.png">
 </p>
-
         -   Top 5 important features of Gradient Boosting Regressor and Random Forest Regressor
-            -   rental value, elementary, lot size, squareFeet, age
+            -   rentalValue, elementry, lotSize, squareFeet, age
+        -   Validation Dataset Evaluation metrics
+            Validation MAE : 5.452511505858551
+            Validation MSE : 41.90547678814682
+            Validation R2-score : 0.9999999997669066
 
 ### 6 - Deployment
     6.1 Strategy
-        -  We could Deploy this model as a web application or API to provide users with a user-friendly interface for predicting housing prices in the Bay Area.
-        -  The user can provide inputs such as zip code, bath, and beds or he can provide an address of the property. 
-		We can use the deployed model to accurately predict
-        sale price. 
+        -   This model can be deployed as a web application or API to provide users with a user-friendly interface for predicting housing prices.
+        -   The user can provide inputs such as zip code, bath, beds or he can provide an address of the property.
 
     6.2 Improvement for Future Predictions
-        -   Continuously update the model with new data fetched from recently sold houses inventory from Redfin to improve accuracy and performance. 
+        -   Continuously update the model with new data fetched from recent sold houses inventory from Redfin to improve accuracy and performance. 
         -   Identifying more features such as crime rates, taxes, remodels any major renovations needed, to enhance prediction accuracy.
 
     6.3 Feature Affecting Pricing
-        -   Location: The location of the property is a significant factor affecting housing prices in the Bay Area. Neighborhoods with good school ratings, high transit availability and rental value tend to have higher prices.
-        -   Size and Condition: The size and condition of the property, including the number of bedrooms, bathrooms, and overall Square footage play a crucial role in determining its price.
+        -   Location: The location of the property is a significant factor affecting housing prices in the Bay Area
+            Neighborhoods with good school ratings, high transit availability and rental value tend to have higher prices.
+        -   Size and Condition: The size and condition of the property, including the number of bedrooms, bathrooms, 
+            and overall Square footage play a crucial role in determining its price.
 
     6.4 Summary
         -   The housing price prediction model for the Bay Area provides a valuable tool for real estate investors, buyers, and sellers to make informed decisions.
-        -   By accurately predicting housing prices, the model can help investors identify profitable investment opportunities and sellers determine the optimal listing price for their properties.
-        -   Additionally, the model can assist buyers in making informed decisions based on their budget and preferences, ultimately improving the overall efficiency and transparency of the real estate mark
+        -   By accurately predicting housing prices, the model can help investors identify profitable investment opportunities 
+            and sellers determine the optimal listing price for their properties.
+        -   Additionally, the model can assist buyers in making informed decisions based on their budget and preferences, 
+            ultimately improving the overall efficiency and transparency of the real estate mark
